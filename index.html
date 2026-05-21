@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="main.css">
+<title>Clicker</title>
+</head>
+
+<body>
+
+<div class="topbar">
+
+    <div class="logo">
+        🍪 COOKIE EMPIRE
+    </div>
+
+    <div class="statsBox">
+        <div id="score">0</div>
+        <p>печенек</p>
+    </div>
+
+    <div class="statsBox">
+        <div id="perSecond">0</div>
+        <p>в секунду</p>
+    </div>
+
+    <div id="pogas">
+        <button id="achievment">Достижения</button>
+        <button id="Rating">Рейтинг</button>
+        <button id="settings">Настройки</button>
+    </div>
+
+</div>
+
+<div>
+    <img id="cookie" src="https://madoaparis.com/wp-content/uploads/2021/12/Madoaparis_cookie-pepite-chocolat.png" alt="Cookie">
+</div>
+
+<div id="rebirth">Rebirth: 0 / 10</div>
+<button id="upgradeBtn">
+    Upgrade
+    <span id="upgradePrice">50 🍪</span>
+</button>
+<button id="autoBtn">
+    Auto Click
+    <span id="autoPrice">200 🍪</span>
+</button>
+
+<div class="sidebar">
+
+    <div class="panel">
+        <div class="panel-title">СТАТИСТИКА</div>
+
+        <div class="stat-item">
+            <span>🍪 Всего печенек</span>
+            <b id="totalCookies">0</b>
+        </div>
+
+        <div class="stat-item">
+            <span>👆 Всего кликов</span>
+            <b id="totalClicks">0</b>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title">МИР</div>
+
+        <div class="world-item">
+            🌍 Cookie World  |
+            0 уровень
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="rebirthPanel">
+
+    <h1>REBIRTH</h1>
+
+    <p>Собери печеньки для перерождения</p>
+
+    <div class="progressBar">
+        <div id="progress"></div>
+    </div>
+
+    <p id="rebirthText">0 / 1000</p>
+
+    <button id="rebirthBtn">
+        REBIRTH
+    </button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
