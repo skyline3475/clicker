@@ -43,6 +43,54 @@ function formatNumber(num) {
     return Math.floor(num);
 }
 
+// Загрузка сохраненной игры
+
+function loadGame(){
+
+    score =
+        Number(localStorage.getItem("score")) || 0;
+
+    bonus =
+        Number(localStorage.getItem("bonus")) || 1;
+
+    auto =
+        Number(localStorage.getItem("auto")) || 0;
+
+    rebirths =
+        Number(localStorage.getItem("rebirths")) || 0;
+
+    upgradePrice =
+        Number(localStorage.getItem("upgradePrice")) || 50;
+
+    autoPrice =
+        Number(localStorage.getItem("autoPrice")) || 200;
+
+    totalClicks =
+        Number(localStorage.getItem("totalClicks")) || 0;
+
+    totalCookies =
+        Number(localStorage.getItem("totalCookies")) || 0;
+}
+// Сохранение игры при закрытии страницы
+
+function saveGame(){
+
+    localStorage.setItem("score", score);
+
+    localStorage.setItem("bonus", bonus);
+
+    localStorage.setItem("auto", auto);
+
+    localStorage.setItem("rebirths", rebirths);
+
+    localStorage.setItem("upgradePrice", upgradePrice);
+
+    localStorage.setItem("autoPrice", autoPrice);
+
+    localStorage.setItem("totalClicks", totalClicks);
+
+    localStorage.setItem("totalCookies", totalCookies);
+}
 
 // Обновление UI
 
@@ -160,6 +208,8 @@ rebirthBtn.onclick = () => {
         auto = 0;
 
         rebirthCost *= 2;
+        autoPrice = 200;
+        upgradePrice = 50;
 
         updateUI();
 
@@ -182,4 +232,11 @@ setInterval(() => {
 }, 1000);
 
 // Старт
+setInterval(() => {
+
+    saveGame();
+
+}, 5000);
+loadGame();
+
 updateUI();
