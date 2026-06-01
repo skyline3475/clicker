@@ -8,6 +8,10 @@ let rebirthMax = 10;
 let rebirthCost = 1000;
 let bakeryUpgradeCost = 150000;
 let bakeryUpgradeAmount = 0;
+let grandmaUpgradeCost = 10000000;
+let grandmaUpgradeAmount = 0;
+let GalaxyUpgradeCost = 100000000;
+
 
 // ЦЕНЫ
 let upgradePrice = 50;
@@ -33,6 +37,11 @@ const progress = document.getElementById("progress");
 const rebirthText = document.getElementById("rebirthText");
 const bakeryUpgradeText = document.getElementById("bakeryUpgradeText");
 const bakeryUpgrade = document.getElementById("bakeryUpgrade");
+const grandmaUpgradeText = document.getElementById("grandmaUpgradeText");
+const grandmaUpgrade = document.getElementById("grandmaUpgrade");
+const GalaxyUpgrade = document.getElementById("GalaxyUpgrade")
+const GalaxyUpgradeText = document.getElementById("GalaxyUpgradeText");
+
 // превращение из 1000 в 1K и т.д.
 
 
@@ -78,6 +87,13 @@ function loadGame(){
 
     bakeryUpgradeCost =
         Number(localStorage.getItem("bakeryUpgradeCost")) || 150000;
+    grandmaUpgradeAmount =
+        Number(localStorage.getItem("grandmaUpgradeAmount")) || 0;
+
+    grandmaUpgradeCost =
+        Number(localStorage.getItem("grandmaUpgradeCost")) || 10000000;
+    GalaxyUpgradeCost =
+        Number(localStorage.getItem("GalaxyUpgrade")) || 100000000;
 }
 // Сохранение игры при закрытии страницы
 
@@ -102,6 +118,11 @@ function saveGame(){
     localStorage.setItem("bakeryUpgradeAmount", bakeryUpgradeAmount);
 
     localStorage.setItem("bakeryUpgradeCost", bakeryUpgradeCost);
+
+    localStorage.setItem("grandmaUpgradeAmount", grandmaUpgradeAmount);
+
+    localStorage.setItem("grandmaUpgradeCost", grandmaUpgradeCost);
+    localStorage.setItem("GalaxyUpgrade", GalaxyUpgrade);
     
 }
 
@@ -127,6 +148,11 @@ function updateUI() {
     bakeryUpgradeText.innerText =
         formatNumber(bakeryUpgradeCost) + " 🍪";
 
+    grandmaUpgradeText.innerText =
+        formatNumber(grandmaUpgradeCost) + " 🍪";
+    
+    
+
     // Progress bar
     let percent = (score / rebirthCost) * 100;
 
@@ -151,6 +177,22 @@ function updateUI() {
 
 
 // КЛИК ПО ПЕЧЕНЬКЕ
+
+grandmaUpgrade.onclick = () => {
+
+    if (score >= grandmaUpgradeCost) {
+        grandmaUpgradeAmount++;
+        score -= grandmaUpgradeCost;
+        bonus *= 1.5;
+        grandmaUpgradeCost *= 10;
+        updateUI();
+        saveGame();
+    }
+    else {
+
+        alert("Не хватает печенек!");
+    }
+}
 
 bakeryUpgrade.onclick = () => {
 
