@@ -6,6 +6,8 @@ let totalCookies = 0;
 let rebirths = 0;
 let rebirthMax = 10;
 let rebirthCost = 1000;
+let bakeryUpgradeCost = 150000;
+let bakeryUpgradeAmount = 0;
 
 // ЦЕНЫ
 let upgradePrice = 50;
@@ -29,8 +31,8 @@ const autoPriceText = document.getElementById("autoPrice");
 
 const progress = document.getElementById("progress");
 const rebirthText = document.getElementById("rebirthText");
-
-
+const bakeryUpgradeText = document.getElementById("bakeryUpgradeText");
+const bakeryUpgrade = document.getElementById("bakeryUpgrade");
 // превращение из 1000 в 1K и т.д.
 
 
@@ -70,6 +72,12 @@ function loadGame(){
 
     totalCookies =
         Number(localStorage.getItem("totalCookies")) || 0;
+
+    bakeryUpgradeAmount =
+        Number(localStorage.getItem("bakeryUpgradeAmount")) || 0;
+
+    bakeryUpgradeCost =
+        Number(localStorage.getItem("bakeryUpgradeCost")) || 150000;
 }
 // Сохранение игры при закрытии страницы
 
@@ -90,6 +98,11 @@ function saveGame(){
     localStorage.setItem("totalClicks", totalClicks);
 
     localStorage.setItem("totalCookies", totalCookies);
+
+    localStorage.setItem("bakeryUpgradeAmount", bakeryUpgradeAmount);
+
+    localStorage.setItem("bakeryUpgradeCost", bakeryUpgradeCost);
+    
 }
 
 // Обновление UI
@@ -111,6 +124,9 @@ function updateUI() {
     autoPriceText.innerText =
         formatNumber(autoPrice) + " 🍪";
 
+    bakeryUpgradeText.innerText =
+        formatNumber(bakeryUpgradeCost) + " 🍪";
+
     // Progress bar
     let percent = (score / rebirthCost) * 100;
 
@@ -123,11 +139,31 @@ function updateUI() {
     totalClicksEl.innerText = formatNumber(totalClicks);
 
     totalCookiesEl.innerText = formatNumber(totalCookies);
+
+    if (bakeryUpgradeAmount == 1) {
+            cookie.src = "https://www.otisspunkmeyer.com/sites/default/files/styles/no_style/public/2024-01/cookies_funraising.png?itok=hG-Nk6qR";
+        } else if (bakeryUpgradeAmount == 2) {
+            cookie.src = "https://sp-ao.shortpixel.ai/client/to_auto,q_lossless,ret_img,w_1500,h_1500/https://cookie-couture.com/wp-content/uploads/2025/04/Cookie-Raspberry-White-Choccrumbs-1.png";
+        } else if (bakeryUpgradeAmount == 3) {
+            cookie.src = "https://www.pngall.com/wp-content/uploads/5/Chocolate-Chip-Cookie-PNG-High-Quality-Image.png";
+        }
 }
 
 
 // КЛИК ПО ПЕЧЕНЬКЕ
 
+bakeryUpgrade.onclick = () => {
+
+    if (score >= bakeryUpgradeCost) {
+        bakeryUpgradeAmount++;
+        score -= bakeryUpgradeCost;
+        bonus *= 1.5;
+        bakeryUpgradeCost *= 5;
+        updateUI();
+        saveGame();
+        
+    }   
+}
 
 cookie.onclick = () => {
 
@@ -160,6 +196,7 @@ upgradeBtn.onclick = () => {
         upgradePrice *= 2;
 
         updateUI();
+        saveGame();
 
     } else {
 
@@ -183,6 +220,7 @@ autoBtn.onclick = () => {
         autoPrice *= 2;
 
         updateUI();
+        saveGame();
 
     } else {
 
@@ -212,12 +250,13 @@ rebirthBtn.onclick = () => {
         upgradePrice = 50;
 
         updateUI();
-
+        saveGame();
     } else {
 
         alert("Нельзя сделать rebirth!");
     }
 };
+
 
 
 // AUTO COOKIE
@@ -236,7 +275,7 @@ setInterval(() => {
 
     saveGame();
 
-}, 5000);
+}, 1000);
 loadGame();
 
 updateUI();

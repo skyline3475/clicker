@@ -137,42 +137,29 @@ button:hover {
 
 .stat-item b{
     color:#ffd54a;
-}
+    }
+
+
 
 .panel2{
     background:rgba(0,0,0,0.7);
-
+    border-width: 100%;
     border-radius:20px;
-    align-items: end;
     padding:20px;
-
     box-shadow:0 0 20px rgba(0,0,0,0.5);
-}
-
-.panel-title2{
-    text-align:center;
-    color:white;
-    font-size:28px;
-    font-weight:bold;
-    margin-bottom:20px;
-    align-items: end;
+    margin-top:20px;
+    margin-left: 325px;
+    height: 150px;
+    margin-right: 450px;
 }
 
 .stat-item2{
     display:flex;
-    justify-content:space-between;
-    align-items: end;
-
-    padding:10px 0;
-
+    justify-content: space-between;
     color:white;
     font-size:20px;
-    align-items: end;
-    
+    border-bottom:1px solid rgba(255,255,255,0.1);
 }
-
 .stat-item2 b{
     color:#ffd54a;
-    align-items: end;
 }
-
